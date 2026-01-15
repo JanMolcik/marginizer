@@ -1,10 +1,17 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Input } from '@/components/ui';
 import { parseFile } from '@/lib/parser';
 import { calculateSummary } from '@/lib/calculations';
 import { storage } from '@/lib/storage';
 import type { Product, MarginAnalysis } from '@/types';
+
+// Security limits
+const MAX_FILE_SIZE_MB = 5;
+const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
+const MAX_PRODUCTS = 1000;
+const RATE_LIMIT_MS = 2000; // Min time between uploads
+const MAX_ANALYSES = 50; // Max stored analyses
 
 interface DropZoneProps {
   onUploadComplete: () => void;
@@ -19,6 +26,7 @@ export function DropZone({ onUploadComplete, onCancel }: DropZoneProps) {
   const [analysisName, setAnalysisName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const lastUploadTime = useRef<number>(0);
 
   const handleDrag = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -41,8 +49,38 @@ export function DropZone({ onUploadComplete, onCancel }: DropZoneProps) {
     setIsLoading(true);
     setError(null);
 
+    // Rate limiting check
+    const now = Date.now();
+    if (now - lastUploadTime.current < RATE_LIMIT_MS) {
+      setError(t('security.rateLimited'));
+      setIsLoading(false);
+      return;
+    }
+    lastUploadTime.current = now;
+
+    // File size check
+    if (selectedFile.size > MAX_FILE_SIZE_BYTES) {
+      setError(t('security.fileTooLarge', { maxSize: MAX_FILE_SIZE_MB }));
+      setIsLoading(false);
+      return;
+    }
+
     try {
       const parsed = await parseFile(selectedFile);
+
+      // Product count check
+      if (parsed.length > MAX_PRODUCTS) {
+        setError(t('security.tooManyProducts', { maxProducts: MAX_PRODUCTS }));
+        setIsLoading(false);
+        return;
+      }
+
+      if (parsed.length === 0) {
+        setError(t('security.noProducts'));
+        setIsLoading(false);
+        return;
+      }
+
       setProducts(parsed);
       setFile(selectedFile);
       setAnalysisName(selectedFile.name.replace(/\.(xlsx|csv)$/i, ''));
@@ -79,6 +117,14 @@ export function DropZone({ onUploadComplete, onCancel }: DropZoneProps) {
     setIsLoading(true);
 
     try {
+      // Check max analyses limit
+      const existingAnalyses = await storage.getAnalyses();
+      if (existingAnalyses.length >= MAX_ANALYSES) {
+        setError(t('security.tooManyAnalyses', { maxAnalyses: MAX_ANALYSES }));
+        setIsLoading(false);
+        return;
+      }
+
       const analysis: MarginAnalysis = {
         id: crypto.randomUUID(),
         name: analysisName || file.name,
@@ -88,10 +134,25 @@ export function DropZone({ onUploadComplete, onCancel }: DropZoneProps) {
         summary: calculateSummary(products),
       };
 
+      // Check localStorage quota before saving
+      const analysisSize = JSON.stringify(analysis).length;
+      const estimatedUsage = analysisSize * 2; // Safety margin
+
+      if (estimatedUsage > 4 * 1024 * 1024) { // 4MB safety limit
+        setError(t('security.storageFull'));
+        setIsLoading(false);
+        return;
+      }
+
       await storage.saveAnalysis(analysis);
       onUploadComplete();
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to save analysis');
+      // Handle quota exceeded error
+      if (err instanceof Error && err.name === 'QuotaExceededError') {
+        setError(t('security.storageFull'));
+      } else {
+        setError(err instanceof Error ? err.message : 'Failed to save analysis');
+      }
     } finally {
       setIsLoading(false);
     }

@@ -85,5 +85,13 @@
     "print": "Tisk",
     "pdf": "PDF",
     "unknown": "Neznámý"
+  },
+  "security": {
+    "rateLimited": "Prosím počkejte chvíli před nahráním dalšího souboru",
+    "fileTooLarge": "Soubor je příliš velký. Maximální velikost je {{maxSize}}MB",
+    "tooManyProducts": "Příliš mnoho produktů. Maximum je {{maxProducts}} produktů na soubor",
+    "noProducts": "V souboru nebyly nalezeny žádné produkty",
+    "tooManyAnalyses": "Dosažen limit úložiště. Maximum {{maxAnalyses}} analýz. Nejprve smažte staré analýzy",
+    "storageFull": "Úložiště prohlížeče je plné. Smažte staré analýzy pro uvolnění místa"
   }
 }

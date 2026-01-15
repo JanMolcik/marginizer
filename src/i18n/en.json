@@ -85,5 +85,13 @@
     "print": "Print",
     "pdf": "PDF",
     "unknown": "Unknown"
+  },
+  "security": {
+    "rateLimited": "Please wait a moment before uploading another file",
+    "fileTooLarge": "File too large. Maximum size is {{maxSize}}MB",
+    "tooManyProducts": "Too many products. Maximum is {{maxProducts}} products per file",
+    "noProducts": "No products found in the file",
+    "tooManyAnalyses": "Storage limit reached. Maximum {{maxAnalyses}} analyses. Please delete old analyses first",
+    "storageFull": "Browser storage is full. Please delete old analyses to free up space"
   }
 }
