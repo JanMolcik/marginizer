@@ -1,0 +1,89 @@
+{
+  "app": {
+    "title": "Product Margins",
+    "description": "Analyze and optimize your product margins"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "newAnalysis": "New Analysis"
+  },
+  "dashboard": {
+    "title": "Margin Analyses",
+    "empty": "No analyses yet",
+    "emptyDescription": "Upload a product file to start analyzing margins",
+    "uploadButton": "Upload Products",
+    "products": "products",
+    "avgMargin": "Avg. margin",
+    "lowMargin": "Low margin",
+    "created": "Created"
+  },
+  "analysis": {
+    "title": "Analysis Details",
+    "backToDashboard": "Back to Dashboard",
+    "search": "Search products...",
+    "exportCSV": "Export CSV",
+    "exportSelected": "Export Selected",
+    "targetMargins": "Target Margins",
+    "target": "Target",
+    "currentMargin": "Current Margin",
+    "newPrice": "New Price",
+    "priceChange": "Price Change",
+    "filters": "Filters",
+    "clearFilters": "Clear filters",
+    "selectAll": "Select all",
+    "deselectAll": "Deselect all",
+    "selectedCount": "{{count}} selected",
+    "filteredStats": "Showing {{filtered}} of {{total}} products"
+  },
+  "upload": {
+    "title": "Upload Products",
+    "dropzone": "Drop your file here, or click to browse",
+    "formats": "Supports .xlsx and .csv files",
+    "preview": "Preview",
+    "import": "Import",
+    "cancel": "Cancel",
+    "fileName": "Analysis name",
+    "fileNamePlaceholder": "e.g., January 2024 Analysis"
+  },
+  "table": {
+    "code": "Code",
+    "name": "Name",
+    "purchasePrice": "Purchase Price",
+    "currentPrice": "Current Price",
+    "margin": "Margin",
+    "noResults": "No products found"
+  },
+  "stats": {
+    "total": "Total Products",
+    "avgMargin": "Average Margin",
+    "lowMargin": "Low Margin (<50%)",
+    "mediumMargin": "Medium (50-69%)",
+    "highMargin": "High Margin (70%+)"
+  },
+  "common": {
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "loading": "Loading...",
+    "error": "Error"
+  },
+  "variants": {
+    "color": "Color",
+    "part": "Part",
+    "pdf": "PDF",
+    "print": "Print",
+    "size": "Size",
+    "colored": "Colored",
+    "monochrome": "Monochrome"
+  },
+  "visibility": {
+    "variant": "Variant Visibility",
+    "product": "Product Visibility"
+  },
+  "productType": {
+    "label": "Product Type",
+    "print": "Print",
+    "pdf": "PDF",
+    "unknown": "Unknown"
+  }
+}

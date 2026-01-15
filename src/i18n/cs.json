@@ -1,0 +1,89 @@
+{
+  "app": {
+    "title": "Marže produktu",
+    "description": "Analyzujte a optimalizujte marže vašich produktu"
+  },
+  "nav": {
+    "dashboard": "Prehled",
+    "newAnalysis": "Nová analýza"
+  },
+  "dashboard": {
+    "title": "Analýzy marží",
+    "empty": "Zatím žádné analýzy",
+    "emptyDescription": "Nahrajte soubor s produkty a zacnete analyzovat marže",
+    "uploadButton": "Nahrát produkty",
+    "products": "produktu",
+    "avgMargin": "Prumerná marže",
+    "lowMargin": "Nízká marže",
+    "created": "Vytvoreno"
+  },
+  "analysis": {
+    "title": "Detail analýzy",
+    "backToDashboard": "Zpet na prehled",
+    "search": "Hledat produkty...",
+    "exportCSV": "Exportovat CSV",
+    "exportSelected": "Exportovat vybrané",
+    "targetMargins": "Cílové marže",
+    "target": "Cíl",
+    "currentMargin": "Aktuální marže",
+    "newPrice": "Nová cena",
+    "priceChange": "Zmena ceny",
+    "filters": "Filtry",
+    "clearFilters": "Zrušit filtry",
+    "selectAll": "Vybrat vše",
+    "deselectAll": "Zrušit výber",
+    "selectedCount": "{{count}} vybráno",
+    "filteredStats": "Zobrazeno {{filtered}} z {{total}} produktu"
+  },
+  "upload": {
+    "title": "Nahrát produkty",
+    "dropzone": "Pretáhnete soubor sem, nebo kliknete pro výber",
+    "formats": "Podporované formáty: .xlsx a .csv",
+    "preview": "Náhled",
+    "import": "Importovat",
+    "cancel": "Zrušit",
+    "fileName": "Název analýzy",
+    "fileNamePlaceholder": "napr. Analýza leden 2024"
+  },
+  "table": {
+    "code": "Kód",
+    "name": "Název",
+    "purchasePrice": "Nákupní cena",
+    "currentPrice": "Prodejní cena",
+    "margin": "Marže",
+    "noResults": "Žádné produkty nenalezeny"
+  },
+  "stats": {
+    "total": "Celkem produktu",
+    "avgMargin": "Prumerná marže",
+    "lowMargin": "Nízká marže (<50%)",
+    "mediumMargin": "Strední (50-69%)",
+    "highMargin": "Vysoká marže (70%+)"
+  },
+  "common": {
+    "delete": "Smazat",
+    "confirm": "Potvrdit",
+    "cancel": "Zrušit",
+    "loading": "Nacítání...",
+    "error": "Chyba"
+  },
+  "variants": {
+    "color": "Barva",
+    "part": "Díl",
+    "pdf": "PDF",
+    "print": "Tisk",
+    "size": "Velikost",
+    "colored": "Barevná",
+    "monochrome": "Cernobílá"
+  },
+  "visibility": {
+    "variant": "Viditelnost varianty",
+    "product": "Viditelnost produktu"
+  },
+  "productType": {
+    "label": "Typ produktu",
+    "print": "Tisk",
+    "pdf": "PDF",
+    "unknown": "Neznámý"
+  }
+}
