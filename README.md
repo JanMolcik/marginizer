@@ -6,15 +6,21 @@ A web application for analyzing and optimizing product profit margins. Built for
 
 - **File Import**: Upload product data from CSV or XLSX files
 - **Margin Analysis**: View current margins with color-coded health indicators (low/medium/high)
-- **Target Simulation**: Configure custom target margins (e.g., 70%, 75%) and see required price changes
+- **VAT Support**: Display prices both with and without VAT
+- **Target Simulation**: Configure custom target margins (e.g., 70%, 75%) and see:
+  - New price without VAT
+  - New price with VAT
+  - Customer-facing price change percentage (calculated from VAT prices)
+- **Price Change Indicators**: Color-coded percentage changes (green ≤10%, red >10%)
 - **Smart Filtering**:
   - Filter by product variants (color, size, etc.)
   - Filter by visibility status (variant/product visibility)
   - Filter by product type (Print/PDF) with automatic detection
 - **Product Selection**: Select specific products for export
 - **Dynamic Statistics**: Summary stats update based on filtered products
-- **Multi-language Support**: Czech and English with number formatting
-- **Persistent Storage**: Analyses saved to localStorage with export backup option
+- **Multi-language Support**: Czech and English with locale-specific number formatting
+- **Dark Mode**: Toggle between light and dark themes
+- **Persistent Storage**: Analyses saved to localStorage with CSV export option
 - **Storage Abstraction**: Easy to migrate to database backend in the future
 
 ## Tech Stack
@@ -59,14 +65,22 @@ Products are automatically categorized as **Print** or **PDF** based on:
 | 50-69% | Medium | Amber |
 | ≥ 70% | High | Green |
 
+## Price Change Indicators
+
+| Change | Color |
+|--------|-------|
+| ≤ 10% | Green |
+| > 10% | Red |
+
 ## File Format
 
 The application expects product files with the following columns:
 
 - `code` - Product code
 - `name` - Product name
-- `price` - Current selling price
+- `price` - Current selling price (without VAT)
 - `purchasePrice` - Cost/purchase price
+- `percentVat` - VAT percentage (e.g., 12, 21)
 - `relativeMargin` - Current margin percentage
 - `variant:*` - Variant columns (Barva, Díl, PDF, TISK, Velikost, etc.)
 - `variantVisibility` - Variant visibility status
@@ -74,7 +88,7 @@ The application expects product files with the following columns:
 
 ## Deployment
 
-Static site deployment to Netlify or Vercel:
+Deployed via Vercel with GitHub webhook (auto-deploy on push to main).
 
 ```bash
 npm run build
