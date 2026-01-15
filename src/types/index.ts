@@ -57,6 +57,8 @@ export interface MarginTarget {
 export interface CalculatedMargin {
   targetPercentage: number;
   newPrice: number;
+  newPriceWithVat: number;
   priceChange: number;
   priceChangePercent: number;
+  priceChangePercentWithVat: number;
 }

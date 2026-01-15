@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Card, Input, Button } from '@/components/ui';
 import { MarginCell } from './MarginCell';
 import { TargetMarginInputs } from './TargetMarginInputs';
-import { calculateMarginForTarget, getProductMargin } from '@/lib/calculations';
+import { calculateMarginForTarget, getProductMargin, getProductPriceWithVat } from '@/lib/calculations';
 import { exportToCSV } from '@/lib/parser';
 import type { Product, ProductVariants, ProductType } from '@/types';
 
@@ -449,6 +449,9 @@ export function ProductTable({ products, analysisName, onFilteredProductsChange 
                   {t('table.currentPrice')}
                   <SortIcon field="price" />
                 </th>
+                <th className={`${headerClass} text-right`}>
+                  {t('table.currentPriceVat')}
+                </th>
                 <th className={`${headerClass} text-center`} onClick={() => handleSort('relativeMargin')}>
                   {t('analysis.currentMargin')}
                   <SortIcon field="relativeMargin" />
@@ -464,7 +467,7 @@ export function ProductTable({ products, analysisName, onFilteredProductsChange 
             <tbody className="bg-white dark:bg-slate-800 divide-y divide-slate-200 dark:divide-slate-700">
               {filteredProducts.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="px-3 py-8 text-center text-slate-500 dark:text-slate-400">
+                  <td colSpan={9} className="px-3 py-8 text-center text-slate-500 dark:text-slate-400">
                     {t('table.noResults')}
                   </td>
                 </tr>
@@ -473,6 +476,7 @@ export function ProductTable({ products, analysisName, onFilteredProductsChange 
                   const calc1 = calculateMarginForTarget(product, target1);
                   const calc2 = calculateMarginForTarget(product, target2);
                   const isSelected = selectedProducts.has(product.code);
+                  const currentPriceWithVat = getProductPriceWithVat(product);
 
                   return (
                     <tr key={product.code} className={`hover:bg-slate-50 dark:hover:bg-slate-700/50 ${isSelected ? 'bg-blue-50/30 dark:bg-blue-900/20' : ''}`}>
@@ -496,26 +500,35 @@ export function ProductTable({ products, analysisName, onFilteredProductsChange 
                       <td className="px-3 py-3 text-sm text-right tabular-nums text-slate-900 dark:text-slate-100 font-medium">
                         {formatNumber(product.price)}
                       </td>
+                      <td className="px-3 py-3 text-sm text-right tabular-nums text-slate-700 dark:text-slate-300">
+                        {formatNumber(currentPriceWithVat)}
+                      </td>
                       <td className="px-3 py-3 text-center">
                         <MarginCell value={getProductMargin(product)} />
                       </td>
                       <td className="px-3 py-3 bg-blue-50/50 dark:bg-blue-900/20">
-                        <div className="text-center">
-                          <div className="text-sm font-medium text-slate-900 dark:text-slate-100 tabular-nums">
+                        <div className="text-center space-y-0.5">
+                          <div className="text-xs tabular-nums text-slate-500 dark:text-slate-400">
                             {formatNumber(calc1.newPrice)}
                           </div>
-                          <div className={`text-xs tabular-nums ${calc1.priceChangePercent > 0 ? 'text-red-600 dark:text-red-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
-                            {formatPercent(calc1.priceChangePercent, true)}
+                          <div className="text-sm font-medium text-slate-900 dark:text-slate-100 tabular-nums">
+                            {formatNumber(calc1.newPriceWithVat)}
+                          </div>
+                          <div className={`text-xs tabular-nums ${calc1.priceChangePercentWithVat > 10 ? 'text-red-600 dark:text-red-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
+                            {formatPercent(calc1.priceChangePercentWithVat, true)}
                           </div>
                         </div>
                       </td>
                       <td className="px-3 py-3 bg-indigo-50/50 dark:bg-indigo-900/20">
-                        <div className="text-center">
-                          <div className="text-sm font-medium text-slate-900 dark:text-slate-100 tabular-nums">
+                        <div className="text-center space-y-0.5">
+                          <div className="text-xs tabular-nums text-slate-500 dark:text-slate-400">
                             {formatNumber(calc2.newPrice)}
                           </div>
-                          <div className={`text-xs tabular-nums ${calc2.priceChangePercent > 0 ? 'text-red-600 dark:text-red-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
-                            {formatPercent(calc2.priceChangePercent, true)}
+                          <div className="text-sm font-medium text-slate-900 dark:text-slate-100 tabular-nums">
+                            {formatNumber(calc2.newPriceWithVat)}
+                          </div>
+                          <div className={`text-xs tabular-nums ${calc2.priceChangePercentWithVat > 10 ? 'text-red-600 dark:text-red-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
+                            {formatPercent(calc2.priceChangePercentWithVat, true)}
                           </div>
                         </div>
                       </td>

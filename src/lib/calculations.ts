@@ -11,6 +11,22 @@ export function calculatePriceForMargin(purchasePrice: number, targetMargin: num
 }
 
 /**
+ * Calculate price with VAT
+ * Formula: priceWithVat = price * (1 + vatPercent / 100)
+ */
+export function calculatePriceWithVat(price: number, vatPercent: number): number {
+  if (!vatPercent || isNaN(vatPercent)) return price;
+  return price * (1 + vatPercent / 100);
+}
+
+/**
+ * Get price with VAT for a product
+ */
+export function getProductPriceWithVat(product: Product): number {
+  return calculatePriceWithVat(product.price, product.percentVat);
+}
+
+/**
  * Calculate the margin percentage from price and cost
  * Formula: margin = (price - cost) / price
  */
@@ -21,6 +37,7 @@ export function calculateMargin(price: number, purchasePrice: number): number {
 
 /**
  * Calculate margin data for a specific target percentage
+ * Includes VAT calculations for end-customer price comparison
  */
 export function calculateMarginForTarget(
   product: Product,
@@ -33,11 +50,20 @@ export function calculateMarginForTarget(
     ? (priceChange / product.price) * 100
     : 0;
 
+  // VAT calculations for end-customer prices
+  const currentPriceWithVat = calculatePriceWithVat(product.price, product.percentVat);
+  const newPriceWithVat = calculatePriceWithVat(newPrice, product.percentVat);
+  const priceChangePercentWithVat = currentPriceWithVat > 0
+    ? ((newPriceWithVat - currentPriceWithVat) / currentPriceWithVat) * 100
+    : 0;
+
   return {
     targetPercentage,
     newPrice,
+    newPriceWithVat,
     priceChange,
     priceChangePercent,
+    priceChangePercentWithVat,
   };
 }
 

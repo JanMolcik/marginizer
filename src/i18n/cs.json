@@ -49,7 +49,8 @@
     "code": "Kód",
     "name": "Název",
     "purchasePrice": "Nákupní cena",
-    "currentPrice": "Prodejní cena",
+    "currentPrice": "Cena",
+    "currentPriceVat": "Cena s DPH",
     "margin": "Marže",
     "noResults": "Žádné produkty nenalezeny"
   },
