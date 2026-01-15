@@ -10,8 +10,8 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       <div
         ref={ref}
         className={`
-          bg-white rounded-xl border border-slate-200 shadow-sm
-          ${hoverable ? 'hover:shadow-md hover:border-slate-300 transition-all duration-200 cursor-pointer' : ''}
+          bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm transition-colors
+          ${hoverable ? 'hover:shadow-md hover:border-slate-300 dark:hover:border-slate-600 transition-all duration-200 cursor-pointer' : ''}
           ${className}
         `}
         {...props}
@@ -26,7 +26,7 @@ Card.displayName = 'Card';
 
 export const CardHeader = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className = '', children, ...props }, ref) => (
-    <div ref={ref} className={`px-5 py-4 border-b border-slate-100 ${className}`} {...props}>
+    <div ref={ref} className={`px-5 py-4 border-b border-slate-100 dark:border-slate-700 ${className}`} {...props}>
       {children}
     </div>
   )

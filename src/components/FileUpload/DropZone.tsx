@@ -170,23 +170,23 @@ export function DropZone({ onUploadComplete, onCancel }: DropZoneProps) {
           />
         </div>
 
-        <div className="bg-slate-50 rounded-lg p-4">
-          <h4 className="text-sm font-medium text-slate-700 mb-3">
+        <div className="bg-slate-50 dark:bg-slate-900/50 rounded-lg p-4">
+          <h4 className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">
             {t('upload.preview')} ({products.length} {t('dashboard.products')})
           </h4>
           <div className="overflow-x-auto">
             <table className="min-w-full text-sm">
               <thead>
-                <tr className="text-left text-slate-600">
+                <tr className="text-left text-slate-600 dark:text-slate-400">
                   <th className="pb-2 pr-4">{t('table.code')}</th>
                   <th className="pb-2 pr-4">{t('table.name')}</th>
                   <th className="pb-2 pr-4 text-right">{t('table.purchasePrice')}</th>
                   <th className="pb-2 text-right">{t('table.currentPrice')}</th>
                 </tr>
               </thead>
-              <tbody className="text-slate-900">
+              <tbody className="text-slate-900 dark:text-slate-100">
                 {products.slice(0, 5).map((product, i) => (
-                  <tr key={i} className="border-t border-slate-200">
+                  <tr key={i} className="border-t border-slate-200 dark:border-slate-700">
                     <td className="py-2 pr-4 font-mono text-xs">{product.code}</td>
                     <td className="py-2 pr-4 truncate max-w-[200px]">{product.name}</td>
                     <td className="py-2 pr-4 text-right tabular-nums">
@@ -200,7 +200,7 @@ export function DropZone({ onUploadComplete, onCancel }: DropZoneProps) {
               </tbody>
             </table>
             {products.length > 5 && (
-              <p className="text-xs text-slate-500 mt-2">
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
                 ... and {products.length - 5} more products
               </p>
             )}
@@ -208,7 +208,7 @@ export function DropZone({ onUploadComplete, onCancel }: DropZoneProps) {
         </div>
 
         {error && (
-          <p className="text-sm text-red-600">{error}</p>
+          <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
         )}
 
         <div className="flex justify-end gap-3">
@@ -233,8 +233,8 @@ export function DropZone({ onUploadComplete, onCancel }: DropZoneProps) {
         className={`
           relative border-2 border-dashed rounded-xl p-12 text-center transition-colors
           ${isDragging
-            ? 'border-slate-400 bg-slate-50'
-            : 'border-slate-300 hover:border-slate-400'
+            ? 'border-slate-400 dark:border-slate-500 bg-slate-50 dark:bg-slate-800'
+            : 'border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500'
           }
         `}
       >
@@ -246,9 +246,9 @@ export function DropZone({ onUploadComplete, onCancel }: DropZoneProps) {
         />
 
         <div className="space-y-3">
-          <div className="w-12 h-12 mx-auto bg-slate-100 rounded-full flex items-center justify-center">
+          <div className="w-12 h-12 mx-auto bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center">
             <svg
-              className="w-6 h-6 text-slate-500"
+              className="w-6 h-6 text-slate-500 dark:text-slate-400"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -261,17 +261,17 @@ export function DropZone({ onUploadComplete, onCancel }: DropZoneProps) {
               />
             </svg>
           </div>
-          <p className="text-slate-600">{t('upload.dropzone')}</p>
-          <p className="text-sm text-slate-500">{t('upload.formats')}</p>
+          <p className="text-slate-600 dark:text-slate-300">{t('upload.dropzone')}</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400">{t('upload.formats')}</p>
         </div>
       </div>
 
       {error && (
-        <p className="text-sm text-red-600">{error}</p>
+        <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
       )}
 
       {isLoading && (
-        <p className="text-sm text-slate-600 text-center">{t('common.loading')}</p>
+        <p className="text-sm text-slate-600 dark:text-slate-400 text-center">{t('common.loading')}</p>
       )}
 
       <div className="flex justify-end">

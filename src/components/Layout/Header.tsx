@@ -1,18 +1,19 @@
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { ThemeToggle } from './ThemeToggle';
 
 export function Header() {
   const { t } = useTranslation();
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-slate-200">
+    <header className="sticky top-0 z-50 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-slate-900 dark:bg-slate-100 rounded-lg flex items-center justify-center">
               <svg
-                className="w-5 h-5 text-white"
+                className="w-5 h-5 text-white dark:text-slate-900"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -25,12 +26,15 @@ export function Header() {
                 />
               </svg>
             </div>
-            <span className="text-lg font-semibold text-slate-900">
+            <span className="text-lg font-semibold text-slate-900 dark:text-slate-100">
               {t('app.title')}
             </span>
           </Link>
 
-          <LanguageSwitcher />
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <LanguageSwitcher />
+          </div>
         </div>
       </div>
     </header>

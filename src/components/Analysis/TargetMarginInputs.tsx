@@ -18,7 +18,7 @@ export function TargetMarginInputs({
 
   return (
     <div className="flex items-end gap-4">
-      <p className="text-sm font-medium text-slate-700 pb-2">
+      <p className="text-sm font-medium text-slate-700 dark:text-slate-300 pb-2">
         {t('analysis.targetMargins')}:
       </p>
       <div className="w-24">
@@ -31,7 +31,7 @@ export function TargetMarginInputs({
           className="text-center"
         />
       </div>
-      <span className="text-slate-500 pb-2">%</span>
+      <span className="text-slate-500 dark:text-slate-400 pb-2">%</span>
       <div className="w-24">
         <Input
           type="number"
@@ -42,7 +42,7 @@ export function TargetMarginInputs({
           className="text-center"
         />
       </div>
-      <span className="text-slate-500 pb-2">%</span>
+      <span className="text-slate-500 dark:text-slate-400 pb-2">%</span>
     </div>
   );
 }

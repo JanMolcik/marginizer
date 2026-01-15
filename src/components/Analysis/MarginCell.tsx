@@ -9,7 +9,7 @@ interface MarginCellProps {
 export function MarginCell({ value, showBadge = true }: MarginCellProps) {
   // Handle null/NaN values
   if (value === null || value === undefined || isNaN(value)) {
-    return <span className="text-slate-400">-</span>;
+    return <span className="text-slate-400 dark:text-slate-500">-</span>;
   }
 
   const health = getMarginHealth(value);
@@ -29,9 +29,9 @@ export function MarginCell({ value, showBadge = true }: MarginCellProps) {
   }
 
   const textColor = {
-    low: 'text-red-600',
-    medium: 'text-amber-600',
-    good: 'text-emerald-600',
+    low: 'text-red-600 dark:text-red-400',
+    medium: 'text-amber-600 dark:text-amber-400',
+    good: 'text-emerald-600 dark:text-emerald-400',
   };
 
   return (

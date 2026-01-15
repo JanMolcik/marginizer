@@ -10,7 +10,7 @@ export function LanguageSwitcher() {
   const { i18n } = useTranslation();
 
   return (
-    <div className="flex items-center gap-1 bg-slate-100 rounded-lg p-1">
+    <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 rounded-lg p-1">
       {languages.map((lang) => (
         <button
           key={lang.code}
@@ -18,8 +18,8 @@ export function LanguageSwitcher() {
           className={`
             px-3 py-1.5 text-sm font-medium rounded-md transition-colors
             ${i18n.language === lang.code
-              ? 'bg-white text-slate-900 shadow-sm'
-              : 'text-slate-600 hover:text-slate-900'
+              ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 shadow-sm'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
             }
           `}
         >

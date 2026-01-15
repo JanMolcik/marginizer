@@ -240,7 +240,7 @@ export function ProductTable({ products, analysisName, onFilteredProductsChange 
     );
   };
 
-  const headerClass = 'px-3 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider cursor-pointer hover:text-slate-700';
+  const headerClass = 'px-3 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider cursor-pointer hover:text-slate-700 dark:hover:text-slate-300';
 
   return (
     <div className="space-y-4">
@@ -281,7 +281,7 @@ export function ProductTable({ products, analysisName, onFilteredProductsChange 
           {/* Variant filters */}
           {Object.entries(variantOptions).some(([, values]) => values.size > 0) && (
             <div className="flex flex-wrap gap-2 items-center">
-              <span className="text-sm text-slate-500">{t('analysis.filters')}:</span>
+              <span className="text-sm text-slate-500 dark:text-slate-400">{t('analysis.filters')}:</span>
               {Object.entries(variantOptions).map(([key, values]) =>
                 Array.from(values).map((value) => {
                   const filterKey = `${key}:${value}`;
@@ -293,8 +293,8 @@ export function ProductTable({ products, analysisName, onFilteredProductsChange 
                       className={`
                         px-2.5 py-1 text-xs rounded-full border transition-colors
                         ${isActive
-                          ? 'bg-slate-900 text-white border-slate-900'
-                          : 'bg-white text-slate-600 border-slate-300 hover:border-slate-400'
+                          ? 'bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 border-slate-900 dark:border-slate-100'
+                          : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500'
                         }
                       `}
                     >
@@ -309,7 +309,7 @@ export function ProductTable({ products, analysisName, onFilteredProductsChange 
           {/* Visibility filters */}
           {Object.entries(visibilityOptions).some(([, values]) => values.size > 0) && (
             <div className="flex flex-wrap gap-2 items-center">
-              <span className="text-sm text-slate-500">{t('visibility.variant')}:</span>
+              <span className="text-sm text-slate-500 dark:text-slate-400">{t('visibility.variant')}:</span>
               {Array.from(visibilityOptions.variant).map((value) => {
                 const filterKey = `variant:${value}`;
                 const isActive = activeVisibilityFilters.has(filterKey);
@@ -321,7 +321,7 @@ export function ProductTable({ products, analysisName, onFilteredProductsChange 
                       px-2.5 py-1 text-xs rounded-full border transition-colors
                       ${isActive
                         ? 'bg-blue-600 text-white border-blue-600'
-                        : 'bg-white text-slate-600 border-slate-300 hover:border-slate-400'
+                        : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500'
                       }
                     `}
                   >
@@ -329,7 +329,7 @@ export function ProductTable({ products, analysisName, onFilteredProductsChange 
                   </button>
                 );
               })}
-              <span className="text-sm text-slate-500 ml-2">{t('visibility.product')}:</span>
+              <span className="text-sm text-slate-500 dark:text-slate-400 ml-2">{t('visibility.product')}:</span>
               {Array.from(visibilityOptions.product).map((value) => {
                 const filterKey = `product:${value}`;
                 const isActive = activeVisibilityFilters.has(filterKey);
@@ -341,7 +341,7 @@ export function ProductTable({ products, analysisName, onFilteredProductsChange 
                       px-2.5 py-1 text-xs rounded-full border transition-colors
                       ${isActive
                         ? 'bg-indigo-600 text-white border-indigo-600'
-                        : 'bg-white text-slate-600 border-slate-300 hover:border-slate-400'
+                        : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500'
                       }
                     `}
                   >
@@ -355,7 +355,7 @@ export function ProductTable({ products, analysisName, onFilteredProductsChange 
           {/* Product type filter */}
           {availableProductTypes.size > 0 && (
             <div className="flex flex-wrap gap-2 items-center">
-              <span className="text-sm text-slate-500">{t('productType.label')}:</span>
+              <span className="text-sm text-slate-500 dark:text-slate-400">{t('productType.label')}:</span>
               {(['print', 'pdf', 'unknown'] as ProductType[]).map((type) => {
                 if (!availableProductTypes.has(type)) return null;
                 const isActive = activeProductTypeFilter === type;
@@ -372,7 +372,7 @@ export function ProductTable({ products, analysisName, onFilteredProductsChange 
                       px-2.5 py-1 text-xs rounded-full border transition-colors
                       ${isActive
                         ? `${colors[type]} text-white`
-                        : 'bg-white text-slate-600 border-slate-300 hover:border-slate-400'
+                        : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500'
                       }
                     `}
                   >
@@ -387,7 +387,7 @@ export function ProductTable({ products, analysisName, onFilteredProductsChange 
           {(activeVariantFilters.size > 0 || activeVisibilityFilters.size > 0 || activeProductTypeFilter !== null) && (
             <button
               onClick={clearAllFilters}
-              className="text-xs text-slate-500 hover:text-slate-700 underline"
+              className="text-xs text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 underline"
             >
               {t('analysis.clearFilters')}
             </button>
@@ -397,24 +397,24 @@ export function ProductTable({ products, analysisName, onFilteredProductsChange 
 
       {/* Selection controls */}
       <div className="flex flex-wrap gap-3 items-center text-sm">
-        <span className="text-slate-500">
+        <span className="text-slate-500 dark:text-slate-400">
           {t('analysis.filteredStats', { filtered: filteredProducts.length, total: products.length })}
         </span>
-        <span className="text-slate-300">|</span>
+        <span className="text-slate-300 dark:text-slate-600">|</span>
         <button
           onClick={selectAllFiltered}
-          className="text-blue-600 hover:text-blue-800"
+          className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
         >
           {t('analysis.selectAll')}
         </button>
         <button
           onClick={deselectAllFiltered}
-          className="text-slate-500 hover:text-slate-700"
+          className="text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
         >
           {t('analysis.deselectAll')}
         </button>
         {selectedProducts.size > 0 && (
-          <span className="text-emerald-600 font-medium">
+          <span className="text-emerald-600 dark:text-emerald-400 font-medium">
             {t('analysis.selectedCount', { count: selectedFilteredCount })}
           </span>
         )}
@@ -422,15 +422,15 @@ export function ProductTable({ products, analysisName, onFilteredProductsChange 
 
       <Card className="overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-slate-200">
-            <thead className="bg-slate-50">
+          <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
+            <thead className="bg-slate-50 dark:bg-slate-900/50">
               <tr>
                 <th className="px-3 py-3 w-10">
                   <input
                     type="checkbox"
                     checked={filteredProducts.length > 0 && filteredProducts.every((p) => selectedProducts.has(p.code))}
                     onChange={(e) => e.target.checked ? selectAllFiltered() : deselectAllFiltered()}
-                    className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                    className="w-4 h-4 rounded border-slate-300 dark:border-slate-600 text-blue-600 focus:ring-blue-500 dark:bg-slate-800"
                   />
                 </th>
                 <th className={headerClass} onClick={() => handleSort('code')}>
@@ -453,18 +453,18 @@ export function ProductTable({ products, analysisName, onFilteredProductsChange 
                   {t('analysis.currentMargin')}
                   <SortIcon field="relativeMargin" />
                 </th>
-                <th className={`${headerClass} text-center bg-blue-50`}>
+                <th className={`${headerClass} text-center bg-blue-50 dark:bg-blue-900/20`}>
                   {t('analysis.target')} {target1}%
                 </th>
-                <th className={`${headerClass} text-center bg-indigo-50`}>
+                <th className={`${headerClass} text-center bg-indigo-50 dark:bg-indigo-900/20`}>
                   {t('analysis.target')} {target2}%
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-slate-200">
+            <tbody className="bg-white dark:bg-slate-800 divide-y divide-slate-200 dark:divide-slate-700">
               {filteredProducts.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="px-3 py-8 text-center text-slate-500">
+                  <td colSpan={8} className="px-3 py-8 text-center text-slate-500 dark:text-slate-400">
                     {t('table.noResults')}
                   </td>
                 </tr>
@@ -475,46 +475,46 @@ export function ProductTable({ products, analysisName, onFilteredProductsChange 
                   const isSelected = selectedProducts.has(product.code);
 
                   return (
-                    <tr key={product.code} className={`hover:bg-slate-50 ${isSelected ? 'bg-blue-50/30' : ''}`}>
+                    <tr key={product.code} className={`hover:bg-slate-50 dark:hover:bg-slate-700/50 ${isSelected ? 'bg-blue-50/30 dark:bg-blue-900/20' : ''}`}>
                       <td className="px-3 py-3">
                         <input
                           type="checkbox"
                           checked={isSelected}
                           onChange={() => toggleProductSelection(product.code)}
-                          className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                          className="w-4 h-4 rounded border-slate-300 dark:border-slate-600 text-blue-600 focus:ring-blue-500 dark:bg-slate-800"
                         />
                       </td>
-                      <td className="px-3 py-3 text-sm font-mono text-slate-600">
+                      <td className="px-3 py-3 text-sm font-mono text-slate-600 dark:text-slate-400">
                         {product.code}
                       </td>
-                      <td className="px-3 py-3 text-sm text-slate-900 max-w-xs truncate">
+                      <td className="px-3 py-3 text-sm text-slate-900 dark:text-slate-100 max-w-xs truncate">
                         {product.name}
                       </td>
-                      <td className="px-3 py-3 text-sm text-right tabular-nums text-slate-600">
+                      <td className="px-3 py-3 text-sm text-right tabular-nums text-slate-600 dark:text-slate-400">
                         {formatNumber(product.purchasePrice)}
                       </td>
-                      <td className="px-3 py-3 text-sm text-right tabular-nums text-slate-900 font-medium">
+                      <td className="px-3 py-3 text-sm text-right tabular-nums text-slate-900 dark:text-slate-100 font-medium">
                         {formatNumber(product.price)}
                       </td>
                       <td className="px-3 py-3 text-center">
                         <MarginCell value={getProductMargin(product)} />
                       </td>
-                      <td className="px-3 py-3 bg-blue-50/50">
+                      <td className="px-3 py-3 bg-blue-50/50 dark:bg-blue-900/20">
                         <div className="text-center">
-                          <div className="text-sm font-medium text-slate-900 tabular-nums">
+                          <div className="text-sm font-medium text-slate-900 dark:text-slate-100 tabular-nums">
                             {formatNumber(calc1.newPrice)}
                           </div>
-                          <div className={`text-xs tabular-nums ${calc1.priceChangePercent > 0 ? 'text-red-600' : 'text-emerald-600'}`}>
+                          <div className={`text-xs tabular-nums ${calc1.priceChangePercent > 0 ? 'text-red-600 dark:text-red-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
                             {formatPercent(calc1.priceChangePercent, true)}
                           </div>
                         </div>
                       </td>
-                      <td className="px-3 py-3 bg-indigo-50/50">
+                      <td className="px-3 py-3 bg-indigo-50/50 dark:bg-indigo-900/20">
                         <div className="text-center">
-                          <div className="text-sm font-medium text-slate-900 tabular-nums">
+                          <div className="text-sm font-medium text-slate-900 dark:text-slate-100 tabular-nums">
                             {formatNumber(calc2.newPrice)}
                           </div>
-                          <div className={`text-xs tabular-nums ${calc2.priceChangePercent > 0 ? 'text-red-600' : 'text-emerald-600'}`}>
+                          <div className={`text-xs tabular-nums ${calc2.priceChangePercent > 0 ? 'text-red-600 dark:text-red-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
                             {formatPercent(calc2.priceChangePercent, true)}
                           </div>
                         </div>

@@ -50,7 +50,7 @@ function Dashboard() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-16">
-        <div className="text-slate-500">{t('common.loading')}</div>
+        <div className="text-slate-500 dark:text-slate-400">{t('common.loading')}</div>
       </div>
     );
   }
@@ -58,7 +58,7 @@ function Dashboard() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold text-slate-900">
+        <h1 className="text-2xl font-semibold text-slate-900 dark:text-slate-100">
           {t('dashboard.title')}
         </h1>
         {analyses.length > 0 && !showUpload && (
@@ -74,7 +74,7 @@ function Dashboard() {
       {showUpload ? (
         <Card>
           <CardHeader>
-            <h2 className="text-lg font-medium text-slate-900">
+            <h2 className="text-lg font-medium text-slate-900 dark:text-slate-100">
               {t('upload.title')}
             </h2>
           </CardHeader>

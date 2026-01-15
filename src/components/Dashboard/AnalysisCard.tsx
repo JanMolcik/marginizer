@@ -30,16 +30,16 @@ export function AnalysisCard({ analysis, onDelete }: AnalysisCardProps) {
         <div className="p-5">
           <div className="flex items-start justify-between gap-4 mb-4">
             <div className="min-w-0 flex-1">
-              <h3 className="text-base font-semibold text-slate-900 truncate">
+              <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100 truncate">
                 {analysis.name}
               </h3>
-              <p className="text-sm text-slate-500 truncate mt-0.5">
+              <p className="text-sm text-slate-500 dark:text-slate-400 truncate mt-0.5">
                 {analysis.fileName}
               </p>
             </div>
             <button
               onClick={handleDelete}
-              className="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
+              className="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/30 rounded transition-colors"
               aria-label={t('common.delete')}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -55,12 +55,12 @@ export function AnalysisCard({ analysis, onDelete }: AnalysisCardProps) {
 
           <div className="grid grid-cols-2 gap-3 text-sm">
             <div>
-              <p className="text-slate-500">{t('dashboard.products')}</p>
-              <p className="font-semibold text-slate-900">{analysis.summary.totalProducts}</p>
+              <p className="text-slate-500 dark:text-slate-400">{t('dashboard.products')}</p>
+              <p className="font-semibold text-slate-900 dark:text-slate-100">{analysis.summary.totalProducts}</p>
             </div>
             <div>
-              <p className="text-slate-500">{t('dashboard.avgMargin')}</p>
-              <p className="font-semibold text-slate-900">
+              <p className="text-slate-500 dark:text-slate-400">{t('dashboard.avgMargin')}</p>
+              <p className="font-semibold text-slate-900 dark:text-slate-100">
                 {(analysis.summary.avgMargin ?? 0).toFixed(1)}%
               </p>
             </div>
@@ -79,7 +79,7 @@ export function AnalysisCard({ analysis, onDelete }: AnalysisCardProps) {
             )}
           </div>
 
-          <p className="text-xs text-slate-400 mt-4">
+          <p className="text-xs text-slate-400 dark:text-slate-500 mt-4">
             {t('dashboard.created')}: {formattedDate}
           </p>
         </div>

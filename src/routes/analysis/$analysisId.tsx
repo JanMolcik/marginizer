@@ -51,7 +51,7 @@ function AnalysisDetail() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-16">
-        <div className="text-slate-500">{t('common.loading')}</div>
+        <div className="text-slate-500 dark:text-slate-400">{t('common.loading')}</div>
       </div>
     );
   }
@@ -59,7 +59,7 @@ function AnalysisDetail() {
   if (error || !analysis) {
     return (
       <div className="text-center py-16">
-        <p className="text-red-600 mb-4">{error || 'Analysis not found'}</p>
+        <p className="text-red-600 dark:text-red-400 mb-4">{error || 'Analysis not found'}</p>
         <Link to="/">
           <Button variant="secondary">{t('analysis.backToDashboard')}</Button>
         </Link>
@@ -81,8 +81,8 @@ function AnalysisDetail() {
       </div>
 
       <div>
-        <h1 className="text-2xl font-semibold text-slate-900">{analysis.name}</h1>
-        <p className="text-slate-500 text-sm mt-1">{analysis.fileName}</p>
+        <h1 className="text-2xl font-semibold text-slate-900 dark:text-slate-100">{analysis.name}</h1>
+        <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">{analysis.fileName}</p>
       </div>
 
       <SummaryStats summary={dynamicSummary} />
